@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import java.util.ArrayList;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 public class ExpensesController {
@@ -28,5 +30,15 @@ public class ExpensesController {
     public Expense addExpense(@RequestBody Expense expense) {
         expenses.add(expense);
         return expense;
+    }
+
+    @DeleteMapping("/expenses/{id}")
+    public void deleteExpense(@PathVariable int id) {
+        for (int i = 0; i < expenses.size(); i++) {
+            if (expenses.get(i).getId() == id) {
+                expenses.remove(i);
+                return;
+            }
+        }
     }
 }
