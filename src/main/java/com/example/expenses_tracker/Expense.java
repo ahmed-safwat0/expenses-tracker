@@ -7,14 +7,15 @@ public class Expense {
     private String category;
     private String description;
     private int id;
+    private static int nextId = 0;
 
-    public Expense(String name, double amount, String date, String category, String description, int id) {
+    public Expense(String name, double amount, String date, String category, String description) {
         this.name = name;
         this.amount = amount;
         this.date = date;
         this.category = category;
         this.description = description;
-        this.id = id;
+        this.id = Expense.nextId++;
     }
 
     public String getName() {
@@ -47,8 +48,7 @@ public class Expense {
                 ", amount=" + amount +
                 ", date='" + date + '\'' +
                 ", category='" + category + '\'' +
-                ", description='" + description + '\'' +
-                ", id=" + id +
+                ", description='" + description +
                 '}';
     }
 }

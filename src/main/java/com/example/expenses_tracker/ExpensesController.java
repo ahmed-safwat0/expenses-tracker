@@ -10,9 +10,9 @@ public class ExpensesController {
 
     public ExpensesController() {
         this.expenses = new ArrayList<>();
-        Expense e1 = new Expense("Groceries", 50.0, "2023-06-01", "Food", "Weekly grocery shopping", 1);
+        Expense e1 = new Expense("Groceries", 50.0, "2023-06-01", "Food", "Weekly grocery shopping");
         Expense e2 = new Expense("Movie Tickets", 30.0, "2023-06-02", "Entertainment",
-                "Went to the movies with friends", 2);
+                "Went to the movies with friends");
         this.expenses.add(e1);
         this.expenses.add(e2);
     }
