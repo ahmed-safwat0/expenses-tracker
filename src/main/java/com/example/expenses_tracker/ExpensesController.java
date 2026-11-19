@@ -2,6 +2,8 @@ package com.example.expenses_tracker;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
 import java.util.ArrayList;
 
 @RestController
@@ -21,5 +23,10 @@ public class ExpensesController {
     public ArrayList<Expense> getExpenses() {
         return expenses;
     }
-
+    
+    @PostMapping("/expenses")
+    public Expense addExpense(@RequestBody Expense expense) {
+        expenses.add(expense);
+        return expense;
+    }
 }
