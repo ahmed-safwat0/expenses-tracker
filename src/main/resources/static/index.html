@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses Tracker</title>
+</head>
+<script>
+    fetch("/expenses")
+    .then(response => response.json())
+    .then(data =>{
+        for(let i=0; i<data.length; i++){
+             let ex =data[i];
+             let li = document.createElement("li");
+             li.textContent = `${ex.name} - $${ex.amount} - ${ex.date} - ${ex.category} - ${ex.description}`;
+             document.getElementById("expenses-list").appendChild(li);
+        }
+    })
+</script>
+<body>
+    <h1>Expenses Tracker</h1>
+<ul id="expenses-list">
+</ul>
+</body>
+</html>
