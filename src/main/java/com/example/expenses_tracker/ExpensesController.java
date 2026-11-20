@@ -7,38 +7,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.ArrayList;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import java.util.LinkedHashMap;
 
 @RestController
 public class ExpensesController {
-    private ArrayList<Expense> expenses;
+    private LinkedHashMap<Integer, Expense> expenses;
 
     public ExpensesController() {
-        this.expenses = new ArrayList<>();
-        Expense e1 = new Expense("Groceries", 50.0, "2023-06-01", "Food", "Weekly grocery shopping");
-        Expense e2 = new Expense("Movie Tickets", 30.0, "2023-06-02", "Entertainment",
-                "Went to the movies with friends");
-        this.expenses.add(e1);
-        this.expenses.add(e2);
+        this.expenses = new LinkedHashMap<>();
     }
 
     @GetMapping("/expenses")
     public ArrayList<Expense> getExpenses() {
-        return expenses;
+        return new ArrayList<>(expenses.values());
     }
-    
+
     @PostMapping("/expenses")
     public Expense addExpense(@RequestBody Expense expense) {
-        expenses.add(expense);
+        expenses.put(expense.getId(), expense);
         return expense;
     }
 
     @DeleteMapping("/expenses/{id}")
     public void deleteExpense(@PathVariable int id) {
-        for (int i = 0; i < expenses.size(); i++) {
-            if (expenses.get(i).getId() == id) {
-                expenses.remove(i);
-                return;
-            }
-        }
+        expenses.remove(id);
     }
 }
